@@ -1,24 +1,18 @@
 require "http"
 require "tty-table"
 
-products = HTTP.get("http://localhost:3000/all_products")
+products = HTTP.get("http://localhost:3000/products")
 products =  products.parse
+
+# Trying to use the TTY Table Gem
 
 reaver = []
 pipeline = []
 aquos = []
-reaver << products[0]["name"]
-reaver << products[0]["price"]
-reaver << products[0]["image_uel"]
-reaver << products[0]["description"]
-pipeline << products[1]["name"]
-pipeline << products[1]["price"]
-pipeline << products[1]["image_uel"]
-pipeline << products[1]["description"]
-aquos << products[2]["name"]
-aquos << products[2]["price"]
-aquos << products[2]["image_uel"]
-aquos << products[2]["description"]
+products[0].each { |key,value| reaver << value}
+products[1].each { |key,value| pipeline << value}
+products[2].each { |key,value| aquos << value}
 
-table = TTY::Table.new(["Name", "Price", "Image URL", "Description"], [reaver, pipeline, aquos])
+table = TTY::Table.new(["Name", "Price", "Image URL", "Description"], [reaver])
 puts table.render(:ascii)
+
