@@ -9,10 +9,13 @@ products =  products.parse
 reaver = []
 pipeline = []
 aquos = []
+
 products[0].each { |key,value| reaver << value}
 products[1].each { |key,value| pipeline << value}
 products[2].each { |key,value| aquos << value}
 
 table = TTY::Table.new(["Name", "Price", "Image URL", "Description"], [reaver])
 puts table.render(:ascii)
+
+
 
