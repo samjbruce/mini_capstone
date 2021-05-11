@@ -40,3 +40,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # TTY Table
 gem "tty-table"
+
+# Active Model Secializer
+gem 'active_model_serializers', '~> 0.10.0'
