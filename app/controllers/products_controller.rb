@@ -1,6 +1,12 @@
 class ProductsController < ApplicationController
   def index
     products = Product.all
+    if params[:search]
+      products = products.where("name iLike ?", "%#{params[:search]}%")
+    end
+    if params[:sort] == "price"
+      products = products.order(:price)
+    end
     render json: products
   end
 
