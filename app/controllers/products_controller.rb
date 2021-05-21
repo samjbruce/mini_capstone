@@ -1,12 +1,16 @@
 class ProductsController < ApplicationController
   def index
-    products = Product.all
-    if params[:search]
-      products = products.where("name iLike ?", "%#{params[:search]}%")
-    elsif params[:sort] == "price"
-      products = products.order(:price)
+    if current_user
+      products = Product.all
+      # if params[:search]
+      #   products = products.where("name iLike ?", "%#{params[:search]}%")
+      # elsif params[:sort] == "price"
+      #   products = products.order(:price)
+      # end
+      render json: {current_user: current_user, products: products}
+    else
+      render json: [], status: :unauthorized
     end
-    render json: products
   end
 
   def create

@@ -1,9 +1,9 @@
 class ImagesController < ApplicationController
-  def index
-    image = Image.all
-    render json: image
+
+  def destroy
+    image = Image.find(params[:id])
+    image.destroy
+    render json: {message: "Image removed"}
   end
-  def create
-    Image.new
-  end
+
 end
