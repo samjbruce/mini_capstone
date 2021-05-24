@@ -1,27 +1,34 @@
 class ProductsController < ApplicationController
+
+  before_action :authenticate_user
+  before_action :authenticate_admin, except: [:index, :show]
+
   def index
-    if current_user
-      products = Product.all
-      # if params[:search]
-      #   products = products.where("name iLike ?", "%#{params[:search]}%")
-      # elsif params[:sort] == "price"
-      #   products = products.order(:price)
-      # end
-      render json: {current_user: current_user, products: products}
-    else
-      render json: [], status: :unauthorized
+    products = Product.all
+    if params[:search]
+      products = products.where("name iLike ?", "%#{params[:search]}%")
     end
+    if params[:sort] == "price" && params[:sort_order] == "asc"
+      products = products.order(:price)
+    end
+    render json: products
   end
 
   def create
     product = Product.new(
       name: params[:name],
-      price: params[:price],
-      image_url: params[:image_url], 
+      price: params[:price], 
       description: params[:description],
+      supplier_id: params[:supplier_id],
       inventory: params[:inventory]
     )
     if product.save
+      if params[:url]
+        Image.create(
+          url: params[:url],
+          product_id: product.id
+        )
+      end
       render json: product
     else
       render json: {error: product.errors.full_messages}, status: :unprocessable_entity
@@ -37,7 +44,6 @@ class ProductsController < ApplicationController
     product = Product.find(params[:id])
     product.name = params[:name] || product.name
     product.price = params[:price] || product.price
-    product.image_url = params[:image_url] || product.image_url
     product.description = params[:description] || product.description
     product.inventory = params[:inventory] || product.inventory
     if product.save
