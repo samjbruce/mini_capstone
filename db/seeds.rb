@@ -1,10 +1,21 @@
-Image.create!([
-  {url: "https://cdn.shopify.com/s/files/1/0620/8685/products/syndicate_1024x1024.png?v=1438869879", product_id: 1}, 
-  {url: "https://cdn.shopify.com/s/files/1/0620/8685/products/syndicate_1024x1024.png?v=1438869879", product_id: 2},
-  {url: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.91hO0wKbo1LCZCML4mQPZwHaEn%26pid%3DApi&f=1", product_id: 4}, 
-  {url: "https://cdn11.bigcommerce.com/s-qkggj5v711/images/stencil/960w/products/115/388/AQ1064_V1__41360.1553216310.jpg?c=2", product_id: 5},
-  {url: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.91hO0wKbo1LCZCML4mQPZwHaEn%26pid%3DApi&f=1", product_id: 6}
-])
+# CategoryProduct.create!([
+#   {product_id: 4, category_id: 2},
+#   {product_id: 5, category_id: 1},
+#   {product_id: 6, category_id: 2}
+# ])
+
+# Category.create!([
+#   {name: "Rods"},
+#   {name: "Apparel"}
+# ])
+
+# Image.create!([
+#   {url: "https://cdn.shopify.com/s/files/1/0620/8685/products/syndicate_1024x1024.png?v=1438869879", product_id: 1}, 
+#   {url: "https://cdn.shopify.com/s/files/1/0620/8685/products/syndicate_1024x1024.png?v=1438869879", product_id: 2},
+#   {url: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.91hO0wKbo1LCZCML4mQPZwHaEn%26pid%3DApi&f=1", product_id: 4}, 
+#   {url: "https://cdn11.bigcommerce.com/s-qkggj5v711/images/stencil/960w/products/115/388/AQ1064_V1__41360.1553216310.jpg?c=2", product_id: 5},
+#   {url: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.91hO0wKbo1LCZCML4mQPZwHaEn%26pid%3DApi&f=1", product_id: 6}
+# ])
 
 # Image.create!([
 #   {url: "https://cdn11.bigcommerce.com/s-qkggj5v711/images/stencil/1024x1024/products/130/440/Syndicate_Reaver_Full_Rod_white_background-1080x720__41552.1614003811.jpg?c=2", product_id: 1}, 
