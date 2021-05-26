@@ -1,3 +1,5 @@
+
+
 # CategoryProduct.create!([
 #   {product_id: 4, category_id: 2},
 #   {product_id: 5, category_id: 1},

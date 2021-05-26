@@ -3,37 +3,28 @@ class OrdersController < ApplicationController
   before_action :authenticate_user
 
   def index
-    if current_user
-      orders = Order.all
-      render json: orders
-    else
-      render json: {message: "Unauthorized"}, status: :unauthorized
-    end
+    orders = Order.all
+    render json: orders
   end
+
   def create
-    if current_user
-      order = Order.new(
-        user_id: current_user.id,
-        product_id: params[:product_id],
-        quantity: params[:quantity],
-      )
-      order.subtotal = order.calculated_subtotal
-      order.tax = order.calculated_tax
-      order.total = order.calculated_total
-      order.save
-      render json: order
-    else
-      render json: {message: "Unauthorized"}, status: :unauthorized
-    end
+    carted_products = CartedProduct.where("status LIKE ?", "carted")
+    order = Order.new(
+      carted_products: carted_products
+    )
+    order = Order.new(
+      user_id: current_user.id,
+    )
+    order.subtotal = order.quantity * order.product.price
+    order.tax = order.subtotal * 0.09
+    order.total = order.tax + order.subtotal
+    order.save
+    render json: order
   end
 
   def show
-    if current_user
-      order = current_user.orders.find(params[:id])
-      render json: order
-    else
-      render json: {message: "Unauthorized"}, status: :unauthorized 
-    end
+    order = current_user.orders.find(params[:id])
+    render json: order
   end
 
 end
